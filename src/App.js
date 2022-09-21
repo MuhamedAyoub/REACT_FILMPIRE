@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { CssBaseline } from '@mui/material'
+import Actors from './pages/Actors'
+import Movies from './pages/Movies'
+import Home from './pages/Home'
+import useStyles from './styles/styles'
+import NavBar from './components/NavBar/NavBar'
+import Sidenav from './components/NavBar/Sidenav'
+// import { Provider } from '@react-redux'
 
-function App() {
+function App () {
+  const classes = useStyles()
+  const [mobileOpen, setMobileOpen] = useState(false)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div style={classes.root}>
+      <CssBaseline />
+     <Sidenav mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+      <main style={classes.container}>
+      <NavBar setMobileOpen={setMobileOpen} />
+        <div style={classes.toolbar}>
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+
+            <Route path="/movies" element={<Movies />} />
+
+            <Route path="/actors/:id" element={<Actors />} />
+          </Routes>
+        </div>
+      </main>
+
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

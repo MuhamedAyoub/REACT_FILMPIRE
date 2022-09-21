@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    padding: 0;
+}
+
+body {
+    padding: 0;
+}
+
+main {
+    padding: 0;
+
+}
+
+.nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+
+}
+
+nav {
+    min-width: 252px;
+    min-height: 100vh;
+}
+
+/* .movie-link:hover {
+    text-decoration: none;
+} */
+
+.movie-image:hover {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+
+@media (max-width:765px) {
+    nav {
+        display: none;
+
+    }
+}
