@@ -3,11 +3,11 @@ import { Route, Routes } from 'react-router-dom'
 import { CssBaseline } from '@mui/material'
 import Actors from './pages/Actors'
 import Movies from './pages/Movies'
-import Home from './pages/Home'
 import useStyles from './styles/styles'
 import NavBar from './components/NavBar/NavBar'
 import Sidenav from './components/NavBar/Sidenav'
 // import { Provider } from '@react-redux'
+import MoviesInfo from './pages/MoviesInfo/MoviesInfo'
 
 function App () {
   const classes = useStyles()
@@ -22,11 +22,9 @@ function App () {
         <div style={classes.toolbar}>
 
           <Routes>
-            <Route path="/" element={<Home />} />
-
-            <Route path="/movies" element={<Movies />} />
-
+            <Route path="/" element={<Movies />} />
             <Route path="/actors/:id" element={<Actors />} />
+            <Route path="/movie/:id" element={<MoviesInfo/>} />
           </Routes>
         </div>
       </main>

@@ -13,8 +13,7 @@ body {
 }
 
 main {
-    padding: 0;
-
+    padding: 20px 30px;
 }
 
 .nav {
@@ -25,7 +24,8 @@ main {
 }
 
 nav {
-    min-width: 252px;
+    position: relative;
+    min-width: 267px;
     min-height: 100vh;
 }
 
@@ -41,9 +41,19 @@ nav {
     -o-transform: scale(1.05);
 }
 
+
+
 @media (max-width:765px) {
     nav {
         display: none;
 
+    }
+
+
+
+    .search-input {
+        margin-top: -10px;
+        margin-bottom: 10px;
+        color: white;
     }
 }

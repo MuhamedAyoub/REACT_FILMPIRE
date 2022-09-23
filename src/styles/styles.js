@@ -4,8 +4,7 @@ export default () => ({
     display: 'flex',
     height: '100%',
     flexWrap: 'wrap',
-    flexDirection: 'row',
-    gap: '0'
+    flexDirection: 'row'
 
   },
   toolbar: {

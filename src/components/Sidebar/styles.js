@@ -3,7 +3,7 @@ export default (theme) => ({
   imageLink: {
     display: 'flex',
     justifyContent: 'center',
-    paddding: '10% 0'
+    padding: '10% 0'
   },
   image: {
     width: '70%'

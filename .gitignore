@@ -10,6 +10,8 @@
 
 # production
 /build
+# webStorm IDE
+/.idea
 
 # misc
 .DS_Store

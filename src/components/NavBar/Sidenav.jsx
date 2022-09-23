@@ -13,9 +13,10 @@ const Sidenav = ({ setMobileOpen, mobileOpen }) => {
                                 variant="temporary"
                                 anchor="right"
                                 open={mobileOpen}
-                                sx={styles.drawerBackground}
+                                sx={styles.drawer}
                                 classes={{
                                   paper: styles.drawerPaper
+
                                 }}
                                 onClose= {
                                   //* the correct way to change the state
@@ -27,6 +28,7 @@ const Sidenav = ({ setMobileOpen, mobileOpen }) => {
                         )
                       : (
                             <Drawer
+                            sx={styles.drawer}
                             classes={{
                               paper: styles.drawerPaper
                             }}

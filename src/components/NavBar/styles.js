@@ -22,11 +22,13 @@ export default (isMobile) => ({
     }
   ],
   drawer: [
-    isMobile && {
-      width: drawerWidth,
-      flexShrink: 0
+    isMobile &&
+      {
+        width: drawerWidth,
+        flexShrink: 0
 
-    }
+      }
+
   ],
   drawerPaper: {
     width: drawerWidth
@@ -36,6 +38,9 @@ export default (isMobile) => ({
       color: 'white !important',
       TextDecoration: 'none'
     }
+  },
+  drawerBackground: {
+
   }
 
 })

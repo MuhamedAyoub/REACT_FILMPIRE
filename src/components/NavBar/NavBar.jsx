@@ -15,6 +15,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { useTheme } from '@emotion/react'
 import useStyles from './styles'
 import { Link } from 'react-router-dom'
+import Search from '../Search/Search'
 function NavBar ({ setMobileOpen }) {
   // Start state
 
@@ -26,64 +27,61 @@ function NavBar ({ setMobileOpen }) {
   // to know if you are in the mobile
   //* Functions
   return (
-        <div className="nav">
-            <AppBar sx={{
-              padding: '0'
-            }} position="sticky">
-                <Toolbar sx={styles.toolbar}>
-
-                    {isMobile && (
-                        <IconButton
-                            color="inherit"
-                            edge="start"
-                            style={{ outline: 'none' }}
-                            onClick={() =>
-                              setMobileOpen((prevMobileOpen) => !prevMobileOpen)
-                            }
-                            sx={styles.menuButton}>
-                            <MenuIcon />
-                        </IconButton>
-                    )}
-                    <IconButton sx={{ ml: 1 }} onClick={() => { }} color="inherit">
-                        {theme.palette.mode === 'dark'
-                          ? (
-                                <Brightness7Icon />
-                            )
-                          : (
-                                <Brightness4Icon />
-                            )}
-                    </IconButton>
-                    {!isMobile && 'search...'}
-                    <div>
-                        {!isAuthenticated
-                          ? (
-                                <Button color="inherit">
-                                    Login &nbsp; <AccountCircleIcon />
-                                </Button>
-                            )
-                          : (
-                                <Button
-                                    color="inherit"
-                                    component={Link}
-                                    to={'/profile/:id'}
-                                    sx={styles.linkButton}>
-                                    {!isMobile && <>My Movies &nbsp;</>}
-                                    <Avatar
-                                        style={{
-                                          width: '30px',
-                                          height: '30px'
-                                        }}
-                                        alt=""
-                                        src=""></Avatar>
-                                </Button>
-                            )}
-
-                    </div>
-                    {isMobile && 'search...'}
-                </Toolbar>
-            </AppBar>
-
-        </div>
+		<div className="nav">
+			<AppBar
+				sx={{
+				  padding: '0'
+				}}
+				position="sticky">
+				<Toolbar sx={styles.toolbar}>
+					{isMobile && (
+						<IconButton
+							color="inherit"
+							edge="start"
+							style={{ outline: 'none' }}
+							onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
+							sx={styles.menuButton}>
+							<MenuIcon />
+						</IconButton>
+					)}
+					<IconButton sx={{ ml: 1 }} onClick={() => {}} color="inherit">
+						{theme.palette.mode === 'dark'
+						  ? (
+							<Brightness7Icon />
+						    )
+						  : (
+							<Brightness4Icon />
+						    )}
+					</IconButton>
+					{!isMobile && <Search />}
+					<div>
+						{!isAuthenticated
+						  ? (
+							<Button color="inherit">
+								Login &nbsp; <AccountCircleIcon />
+							</Button>
+						    )
+						  : (
+							<Button
+								color="inherit"
+								component={Link}
+								to={'/profile/:id'}
+								sx={styles.linkButton}>
+								{!isMobile && <>My Movies &nbsp;</>}
+								<Avatar
+									style={{
+									  width: '30px',
+									  height: '30px'
+									}}
+									alt=""
+									src=""></Avatar>
+							</Button>
+						    )}
+					</div>
+					{isMobile && <Search />}
+				</Toolbar>
+			</AppBar>
+		</div>
   )
 }
 

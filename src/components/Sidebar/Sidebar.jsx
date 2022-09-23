@@ -7,7 +7,8 @@ import {
   Box,
   ListItemIcon,
   ListSubheader,
-  CircularProgress
+  CircularProgress,
+  SliderValueLabel
 } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { useTheme } from '@emotion/react'
@@ -16,6 +17,8 @@ import { useGetGenresQuery } from '../../services/TMDB'
 import Loader from '../Loader'
 //* import Image
 import genresIcons from '../../assets/genres/index'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectGenreOrCategory } from '../../slices/GenreCategorySlice'
 const categories = [
   {
     label: 'Popular',
@@ -38,41 +41,51 @@ const blueLogo =
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme()
   const styles = useStyles(theme)
-  const { data: { genres }, isFetching } = useGetGenresQuery()
-  console.log(genres)
+  const {
+    data,
+    isFetching
+  } = useGetGenresQuery()
+  const dispatch = useDispatch()
+  // const genreIcons  = useSelector(state => state.)
   return (
-		<Fragment>
-			<Link to="/" className={styles.imageLink}>
+		<div className='side-bar' >
+			<Link to="/" style={styles.imageLink}>
 				<img
 					style={styles.image}
 					src={theme.palette.mode === 'light' ? redLogo : blueLogo}
 				/>
 			</Link>
 			<Divider />
-				<List>
-					<ListSubheader>Category</ListSubheader>
-					{categories.map(({ label, value }) => (
-						<Link key={value} style={styles.links} to="/">
-							<ListItem onClick={() => console.log('Clicked')} button>
-								<ListItemIcon>
-									<img
-										src={genresIcons[label.toLowerCase()]}
-										style={styles.genreImages}
-										height={30}
-									/>
-								</ListItemIcon>
-                                <ListItemText primary={label} />
-							</ListItem>
-						</Link>
-					))}
-				</List>
+			<List>
+				<ListSubheader>Category</ListSubheader>
+				{categories.map(({ label, value }) => (
+					<Link key={value} style={styles.links} to="/">
+						<ListItem
+							onClick={() => dispatch(selectGenreOrCategory(value))}
+							button>
+							<ListItemIcon>
+								<img
+									src={genresIcons[label.toLowerCase()]}
+									style={styles.genreImages}
+									height={30}
+								/>
+							</ListItemIcon>
+							<ListItemText primary={label} />
+						</ListItem>
+					</Link>
+				))}
+			</List>
 			<Divider />
-            			<List>
-					<ListSubheader>Genres</ListSubheader>
-					{!isFetching
-					  ? genres?.map(({ name, id }) => (
+			<List>
+				<ListSubheader>Genres</ListSubheader>
+				{!isFetching
+				  ? (
+				  data.genres?.map(({ name, id }) => (
 						<Link key={id} style={styles.links} to="/">
-							<ListItem onClick={() => console.log('Clicked')} button>
+							<ListItem
+							onClick={() => dispatch(selectGenreOrCategory(id))}
+
+							 button>
 								<ListItemIcon>
 									<img
 										src={genresIcons[name.toLowerCase()]}
@@ -80,14 +93,16 @@ const Sidebar = ({ setMobileOpen }) => {
 										height={30}
 									/>
 								</ListItemIcon>
-                                <ListItemText primary={name} />
+								<ListItemText primary={name} />
 							</ListItem>
 						</Link>
-					  ))
-					  : (<Loader />)}
-				</List>
-
-		</Fragment>
+				  ))
+				    )
+				  : (
+					<Loader />
+				    )}
+			</List>
+		</div>
   )
 }
 

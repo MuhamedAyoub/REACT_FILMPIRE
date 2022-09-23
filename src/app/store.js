@@ -1,13 +1,13 @@
 
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import tmdbApi from '../services/TMDB'
-// const rootReducer = combineReducers({
-//   tmdbApi
-// })
+import GenreCategory from '../slices/GenreCategorySlice'
 
 const store = configureStore({
   reducer: {
-    [tmdbApi.reducerPath]: tmdbApi.reducer
+    [tmdbApi.reducerPath]: tmdbApi.reducer,
+    currentGenreCategory: GenreCategory
+
   }
 })
 
