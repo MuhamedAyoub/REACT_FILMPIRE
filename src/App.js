@@ -8,6 +8,7 @@ import NavBar from './components/NavBar/NavBar'
 import Sidenav from './components/NavBar/Sidenav'
 // import { Provider } from '@react-redux'
 import MoviesInfo from './pages/MoviesInfo/MoviesInfo'
+import Profile from './pages/Profile/Profile'
 
 function App () {
   const classes = useStyles()
@@ -25,6 +26,7 @@ function App () {
             <Route path="/" element={<Movies />} />
             <Route path="/actors/:id" element={<Actors />} />
             <Route path="/movie/:id" element={<MoviesInfo/>} />
+            <Route path='/profile/:id' element={<Profile />} />
           </Routes>
         </div>
       </main>

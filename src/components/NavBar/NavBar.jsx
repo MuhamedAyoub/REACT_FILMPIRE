@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   AppBar,
   IconButton,
@@ -16,16 +16,42 @@ import { useTheme } from '@emotion/react'
 import useStyles from './styles'
 import { Link } from 'react-router-dom'
 import Search from '../Search/Search'
+import { createSessionId, fetchToken, movieApi } from '../../utls/auth'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUser, UserSelector } from '../../slices/authSlice'
+import { ExitToApp } from '@mui/icons-material'
 function NavBar ({ setMobileOpen }) {
   // Start state
 
   // End state
-  const isAuthenticated = true
   const theme = useTheme()
   const isMobile = useMediaQuery('(max-width:767px)')
   const styles = useStyles(isMobile)
+  const dispatch = useDispatch()
+  const { user, isAuthenticated } = useSelector(UserSelector)
+  // * my token & session
+  const token = localStorage.getItem('request_token')
+
+  const sessionIdFromLocalStorage = localStorage.getItem('session_id')
   // to know if you are in the mobile
-  //* Functions
+  //* @ useEffect
+  useEffect(() => {
+    const logInUser = async () => {
+      if (token) {
+        try {
+          const sessionId = sessionIdFromLocalStorage || await createSessionId()
+		  const url = `/account?session_id=${sessionId}`
+		  console.log('this is my url ', url)
+          const { data: userData } = await movieApi.get(url)
+          dispatch(setUser(userData))
+        } catch (ex) {
+          console.error(ex)
+        }
+      }
+    }
+
+    logInUser()
+  }, [token, sessionIdFromLocalStorage])
   return (
 		<div className="nav">
 			<AppBar
@@ -57,7 +83,7 @@ function NavBar ({ setMobileOpen }) {
 					<div>
 						{!isAuthenticated
 						  ? (
-							<Button color="inherit">
+							<Button color="inherit" onClick={fetchToken}>
 								Login &nbsp; <AccountCircleIcon />
 							</Button>
 						    )

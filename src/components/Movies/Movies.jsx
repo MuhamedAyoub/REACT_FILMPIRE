@@ -23,7 +23,7 @@ const Movies = () => {
     console.log('s')
     return (
       <Box display='flex' alignItems='center' mt='20px' >
-  <Typography variant='h4' >
+    <Typography variant='h4' >
     No movies
     <br />
     Please search for something else
@@ -33,7 +33,7 @@ const Movies = () => {
   }
   if (error) return 'error has occured'
   return (
-    <div>
+    <div className='movies-container' >
 
         <MovieList movies={data.results} />
     </div>

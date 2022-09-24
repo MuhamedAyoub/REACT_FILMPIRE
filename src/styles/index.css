@@ -29,6 +29,10 @@ nav {
     min-height: 100vh;
 }
 
+.movies-container {
+    padding: 20px 30px;
+}
+
 /* .movie-link:hover {
     text-decoration: none;
 } */

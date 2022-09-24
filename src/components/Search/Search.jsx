@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { TextField, InputAdornment } from '@mui/material'
+import { TextField, InputAdornment, useMediaQuery } from '@mui/material'
 import { Search as SearchIcon } from '@mui/icons-material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -12,10 +12,10 @@ const Search = () => {
   const theme = useTheme()
   // End state
   console.log('Search')
-
+  const isMobile = useMediaQuery('max-width: 767px')
   const dispatch = useDispatch()
   const [query, setQuery] = useState('')
-  const styles = useStyles(theme)
+  const styles = useStyles(theme, isMobile)
   const KeyPressHandler = (event) => {
     if (event.key === 'Enter') {
       dispatch(searchMovie(query))
@@ -28,8 +28,8 @@ const Search = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         variant='standard'
+        style={styles.searchInput}
         InputProps={{
-          className: styles.searchInput,
           startAdornment: (
             <InputAdornment position='start' >
               <SearchIcon />
