@@ -45,8 +45,67 @@ nav {
     -o-transform: scale(1.05);
 }
 
+/*todo Start MovieInfo  */
+.image-poster {
+    border-radius: 20px;
+    box-shadow: .5em 1em 1em rgb(64, 64, 70);
+    width: 20%;
+}
 
 
+.genres-container {
+    margin: 10px 0 !important;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.genre-image {
+    margin-right: 10px;
+}
+
+
+.genres-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+/*todo Start MovieInfo  */
+
+/** Medium devices **/
+@media (max-width: 996px) {
+
+    .image-poster {
+        margin: 0 auto;
+        width: 50%;
+        height: 350px;
+        margin-bottom: 30px;
+
+    }
+}
+
+
+.cast-image {
+    width: 100%;
+    max-width: 7 em;
+    height: 8 em;
+    object-fit: cover;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/** Small devices **/
 @media (max-width:765px) {
     nav {
         display: none;
@@ -59,5 +118,21 @@ nav {
         margin-top: -10px;
         margin-bottom: 10px;
         color: white;
+    }
+
+    .image-poster {
+        margin: 0 auto;
+        width: 100%;
+        height: 350px;
+        margin-bottom: 30px;
+
+    }
+
+    .genres-links {
+        padding: .5rem 1rem;
+    }
+
+    .buttons-container {
+        flex-direction: column;
     }
 }
