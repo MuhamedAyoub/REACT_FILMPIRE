@@ -1,6 +1,0 @@
-
-how to install eslint 
-    npm i eslint -g 
-    then in ur project do this 
-        eslint --init 
-        
